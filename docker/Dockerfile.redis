@@ -18,7 +18,10 @@
 #   platform project (RICP).
 #
 
-FROM nexus3.o-ran-sc.org:10004/bldr-alpine3:6-a3.9-nng as build-env
+# ARG DOCKER_REPO=nexus3.o-ran-sc.org:10004
+ARG DOCKER_REPO=akrainoenea
+
+FROM ${DOCKER_REPO}/bldr-alpine3:6-a3.9-nng as build-env
 
 COPY ./redismodule /redismodule
 WORKDIR /redismodule
