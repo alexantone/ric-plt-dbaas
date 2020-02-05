@@ -15,13 +15,19 @@
 
 FROM ubuntu:latest
 
+#ARG ARCH=amd64
+ARG ARCH=arm64
+
+ENV GO_VER=1.11.4
+ENV GO_PKG=go${GO_VER}.linux-${ARCH}.tar.gz
+
 # Install redis tools & golang & git
 RUN apt-get update && \
     apt install -y redis-tools && \
     apt install -y git && \
     apt install -y wget && \
-    wget https://dl.google.com/go/go1.11.4.linux-amd64.tar.gz && \
-    tar -xvf go1.11.4.linux-amd64.tar.gz && \
+    wget https://dl.google.com/go/${GO_PKG} && \
+    tar -xvf ${GO_PKG} && \
     mv go /usr/local && \
     apt-get clean
 
